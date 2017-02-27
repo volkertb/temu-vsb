@@ -1,0 +1,168 @@
+          ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ ÖÄÒÄ· ÖÄÄ· ÒÄÒÄ· ·  Ö ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+          ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ   º   ÇÄÄ½ º º º º  º ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+          ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ   Ğ   ÓÄÄ½ ½ Ğ Ó ÓÄÄĞ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+          ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+          ³  An ultimate TANDY, PCjr & PS/1 sound chip emulator for   ³
+          ³  PC-Speaker & Covox; also Disney Sound Source emulator.   ³
+          ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+                                ³ Version 3.03 ³
+                  ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÔÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¾ÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+                  ³ (C)opyleft 1992-1993 by FRIENDS software ³
+                  ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+                              Hello people!
+
+         At  last  I  got  the time and finetuned this program, so you can
+    appreciate  it  now.  What  it  does, you ask. Well, its very simple :
+    this  program  emulates  the 3- voice syntheser installed into some PC
+    clones,  such  as  PCjr, Tandy and PS/1. Besides that it emulates also
+    Disney  Sound  Source -  a  real  shit, but many programs supports DSS
+    and  doesnt  seem  to  support  Covox,  so  I added DSS emulation into
+    TEMU. It  works  with many games I tested and only thing that locks up
+    was  Wolf3D,  but hey! you don't have Roman Trunov's Covoxer to use it
+    along with Wolf3D?
+
+         System  requirements :  i80386SX  or  better - based machine, 20K
+    of  RAM,  MSDOS  3.30  or  higher (I  tested  it  only on 5.00, but it
+    must  work  everywhere);  program  will  not run if any software which
+    runs  in  V86  mode  (such  as  EMM386,  386MAX,  QEMM,  CEMM  etc) is
+    detected;  XMS  support  is  present,  so you can run games which uses
+    extended  memory  (if  an XMS driver, such as HIMEM, is loaded) or via
+    INT  15/Fn  87;  Some games which detects TANDY will not run; at least
+    you  can  find  where  it detects TANDY and patch them; PS/1 detection
+    is  present,  but  I  don't know how many programs detects PS/1 in the
+    way  I  used  to fool them. For example, Prince 2 checks bit 4 of CMOS
+    byte  at  address  2F;  if it is 1 they assume that this is PS/1; very
+    shitty, eh? I first tried to set this bit manually but after reboot my
+    poor CMOS was filled with default values, so I decided to patch Prince
+    manually.  Disney Sound Source also must be detected, at least SQ5 and
+    Prince 2 do it well.
+
+         Some   technical  info:  TEMU  emulates  musical  chip  on  ports
+    0C0h,   0C1h,  1E0h,  1E1h,  201h &  205h.  If  you  know  other  port
+    addresses  on  which  this  chip  can  be  located  let  me know. This
+    program  I  started to teach 386 - protected mode technique, thereby I
+    do  not  guarantee  that  program will work well on every computer and
+    every  system  configuration,  simply because it's my first program of
+    this  kind.  Besides  that it's  a alfa (beta, gamma ...) version, and
+    if  you  don't  know  what's a beta version you explicitely don't need
+    this   program.  Disney  Source  is  emulated  on  ports  378h .. 37Ah
+    (usually  LPT1),  but  if  your  LPT1  is on ports 3BCh..3BEh (if it's
+    located  EGA  mono  video  card)  you'll need to patch manually system
+    variable  at  0000:0408  to  378h, because all programs which uses DSS
+    will search for it on wrong address.
+
+    You can get short info about TEMU's options running TEMU /? or TEMU /H;
+    here are more detailed info about them:
+
+    /S - Set output to PC Squeaker. It sounds VERY bad, I think I'll
+         exclude this switch in the future, but while it is available.
+    /L - Set LPT port address of your Covox. If your Covox is on LPT1
+         and your LPT1 is on address 3BCh you can have troubles using
+         DSS emulation. You can patch system varable - LPT1 address -
+         to 378h, and LPT2 address (0000:040A) to 3BCh, then run TEMU
+         to use Covox in LPT2.
+    /T#- Set quantization frequence. The higher is frequence, more CPU
+         power is taken and higher is quality. Normally it's set to
+         something about 16KHz.
+
+         Hint:  if  music  sounds  interrupted  this  means that game uses
+    too  many  CLI  instructions.  Try  to  figure  them  out and to patch
+    them -  in  most  cases they're a overkill. For example, I patched the
+    CLI's  in  VGA320. DRV  from  SQ5 in palette changing routines without
+    any external effects.
+
+         At  last  some  programming  info  about TANDY sound chip, if you
+    wish  to  make  your  own  programs  which  will  use  TANDY for sound
+    output.  Standard  TANDY  have  this  chip  installed on hardware port
+    C0h  and  thought  Jordain  say  that  on  PCjr  it's  on  port A0 all
+    programs  which  support  PCjr  outputs  also  to  C0. Chip have eight
+    registers:
+    ÚÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+    ³ N ³    Bits     ³ Contains                  ³
+    ÃÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+    ³ 0 ³     10      ³ First channel - frequence ³
+    ³ 1 ³      4      ³ First channel - volume    ³
+    ³ 2 ³     10      ³ Second channel - frequence³
+    ³ 3 ³      4      ³ Second channel - volume   ³
+    ³ 4 ³     10      ³ Third channel - frequence ³
+    ³ 5 ³      4      ³ Third channel - volume    ³
+    ³ 6 ³      2      ³ Noise - quality           ³
+    ³ 7 ³      4      ³ Noise - volume            ³
+    ÀÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+         Noise  frequence  depend  of  two  lower  bits  in sixth register
+    Volume  registers  have  4  bits, so, volume have 16 different values.
+    To write something in a register:
+                          ÚÄÂÄÂÄÂÄÒÄÂÄÂÄÂÄ¿
+        (I/O port C0)  <- ³1 r r rºd d d d³
+                          ÀÄÁÄÁÄÁÄĞÄÁÄÁÄÁÄÙ
+        where [rrrr] - Register number;
+              [dddd] - lower four bits of data
+
+        If register have more than 8 bits use second out to port C0:
+                          ÚÄÂÄÒÄÂÄÂÄÂÄÂÄÂÄ¿
+        (I/O port C0)  <- ³0 0ºd d d d d d³
+                          ÀÄÁÄĞÄÁÄÁÄÁÄÁÄÁÄÙ
+        Where: [dddddd] - higher 6 bits of frequence
+
+         Frequence  you  can  compute  in the next way: F{Hz}=~114000/x, where
+    x  is  a  10-bit in chip's registers.
+
+         Volume   TANDY  understands  negated,  i. e.  to  set  volume  to
+    maximal  you  must  use  [dddd]  =  0000b and vice versa - for maximal
+    volume [dddd]=1111b.
+
+        Here is a example:
+
+        mov  al,8Fh   ; lower four bits of frequence
+        out  C0h,al
+        mov  al,3Fh   ; the rest of frequence number
+        out  C0h,al
+        mov  al,90h   ; maximal volume
+        out  C0h,al
+
+         This  example  runs  channel  0  with  frequence  110Hz  and with
+    maximal volume.
+
+    If you wish to say me something you can contact me via FIDOnet
+    at address:
+                2:469/37
+             or 2:469/37.1@FIDOnet ; Andrew Zabolotny.
+
+    Home phone: 373-2-573656, from 09:00 to 10:00
+             or 23:00-24:00 local time (+1 MSK)
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    Version information.
+
+    3.00b, 05/09/93
+    ---------------
+    First public release. Some strange bugs, but IT WORKS!
+
+    3.01, 15/10/93
+    --------------
+    Changed a bit DSS emulation because some games such as
+    Prince 2 have very slow IRQ0 handler and digital sounds
+    squeaks. Now when IRQ0 handler is invoked interrupt flag
+    is set to 1, this looks strange but all seem to be ok and
+    Prince 2 works also. Now TEMU detects XMS driver and if
+    it is so, enables A20 line via XMS driver. These changes
+    was done because rather TEMU conflicts with SmartDrive,
+    now it's all right. I think that Wolf3D will work also,
+    but I killed'em a month ago.
+
+    3.02, 26/12/93
+    --------------
+    DSS buffer size reduced to 16 bytes; also now VM86 supervisor
+    emulates some PM commands such as <mov e?x,cr#> and <mov e?x,dr#>.
+    Fixed some other bugz in supervisor.
+
+    3.03, 27/01/94
+    --------------
+    DSS buffer size again is 32 bytes; however if buffer is more than
+    16 bytes fill `status bit` is 1.
+
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ

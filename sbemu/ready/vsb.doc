@@ -1,0 +1,325 @@
+                  ÄÄ ÜÛÛÜ   ÜÛÛÜ  ÜÛÛÛÛÛÛÛÜ  ÜÛÛÛÛÛÛÛÛÜ ÄÄÄ
+               ÄÄÄÄÄ ÛÛÛÛ   ÛÛÛÛ ÛÛÛÛß ßÛÛÛÛ ÛÛÛÛ   ÛÛÛÛ ÄÄÄÄÄ
+            ÄÄÄÄÄÄÄÄ ÛÛÛÛ   ÛÛÛÛ ßÛÛÛÛÛÜÜ    ÛÛÛÛÛÛÛÛÛß ÄÄÄÄÄÄÄÄÄ
+         ÄÄÄÄÄÄÄÄÄÄÄ ßÛÛÛÜ ÜÛÛÛß    ßßÛÛÛÛÛÜ ÛÛÛÛßßßÛÛÛÜ ÄÄÄÄÄÄÄÄÄÄÄ
+      ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ ßÛÛÛÛÛÛÛß  ÛÛÛÛÜ ÜÛÛÛÛ ÛÛÛÛÜÜÜÛÛÛÛ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ ßÛÛÛß     ßÛÛÛÛÛÛÛß  ßÛÛÛÛÛÛÛÛß ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¸ VIRTUAL ÍÍÍÍ SOUND ÍÍÍÍ BLASTER ÕÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+                      ³       SoundBlaster emulator     ³
+                      ³      for Covox & PC-Speaker     ³
+                      ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+                (C)opyright 1993,1994,1995 by FRIENDS software
+
+   1. Introduction
+   ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+   About two years ago I released the first major release of this thing.
+   There was also a few minor bugfixes - till the last version 1.05.
+   Now a lot of peoples asked me if I can make it work under QEMM or
+   something and the answer was: No, I don't know how to do it - there is no
+   documented way in VCPI or DPMI specifications how to trap I/O ports.
+   Now after QEMM 7.0 was released out the answer is: Yes, there is a API
+   in QEMM that allow this. Moreover, digging around I found a way to
+   patch IDT, GDT, TSS, ANYTHING in (at least) QEMM without using API,
+   but it require another major rewrite and I don't have required time.
+   You as the end user don't have to bother of all that, just continue
+   reading on.
+   So versions above 2.0 will work WITH qemm as well as WITHOUT qemm.
+   WARNING: ANY PROGRAM WHICH USES DOS EXTENDERS (e.g. DOOM, DESCENT etc.)
+   WILL NOT WORK WITH VSB! IF GAME IS INCREDIBLY SLOW UNDER VSB AND DOES
+   NOT DETECT SOUNDBLASTER HARDWARE SEEMS THAT YOU GOT SUCH A CASE, SO
+   DONT LOAD VSB BEFORE SUCH GAMES.
+
+   How to use it? It`s very simple; just run VSB.COM before any game/program
+   which require SoundBlaster; configure game/program (if needed) for an
+   SoundBlaster card on port 220h/DRQ1/IRQ5(the standard SB`s configuration),
+   may be you'll need to set BLASTER environment variable to:
+    set BLASTER=A220 I5 D1 T1
+   and enjoy the sound.
+
+   Usage: VSB {/SLWAI};    Available options:
+   /S   - Use PC speaker for output. Highly not recommended.
+   /L#  - Use Covox in LPT# (1-4) for output.
+          DAC i/o port address is taken from memory address at
+          0000:0408 + #*2, so if you have a DAC with non-standard
+          port address you can set first, say, word ptr 0000:0408+4*2
+          to 2E0 then run VSB /L4
+   /W   - Slower ports 388h & 389h (for fast machines with real AdLib)
+          Some games does not wait needed amount of time between ins/outs
+          to AdLib card. This option slows down any in/out to those ports.
+   /A   - Don`t intercept ports 388h & 389h (if you have an real AdLib card)
+          This option cannot be combined with /W. Normally VSB intercepts
+          ports 388 & 389 and reports an AdLib card installed there. If
+          you have an real AdLib card you can turn it into SoundBlaster
+          by simply using VSB /A or VSB /W (in dependence of game).
+   /I#  - Set emulated SoundBlaster IRQ number (5 or 7)
+          Default is IRQ5 (factory setting :). IRQ7 is not recommended
+          'cause in some environments IRQ7 are sometimes generated
+          by an unknown source (my bug???) so in some games sound
+          will be sometimes cut off.
+
+   Default options are:
+    output device : DAC on port 5FE0 (SeleN sound card left channel).
+    Adlib         : not present
+    IRQ           : 5
+    DMA           : 1 (cannot be changed)
+
+   2. Requirements
+   ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+   All that you need is a i386-based machine and 14K of memory (without QEMM)
+   or 4K of memory (when QEMM is running). A DAC (AKA Covox) is highly
+   recommended, PC speaker is implemented only because it was very simple
+   to implement; an 33-MHz 386SX minimum recomended because emulator
+   takes about a quarter of processor`s power (the higher is quantization
+   frequence, more processor power is taken); my 386DX/40 seem to have
+   enough power for most applications.
+
+   3. What it emulates
+   ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+   I think you understand that it doesn`t emulate entire SoundBlaster card,
+   because all things that SoundBlaster do will require at least
+   Pentium/100MHz. It emulates only DIGITAL part of SoundBlaster;
+   and from DIGITAL part it emulates only some basical things. The
+   commands which are emulated are listed below:
+
+ÚÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+³ ³  Command name       ³ Code ³ Comment                                     ³
+ÃÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+³û³ 8 BIT DAC OUTPUT    ³ 0x10 ³ The only thing emulated by that SBEMU       ³
+³ ³ 8 BIT ADC INPUT     ³ 0x20 ³Â Unimplemented because I don`t see the need;³
+³ ³ 8 BIT DMA INPUT     ³ 0x24 ³Ù If somebody need it, I`ll do it.           ³
+³û³ 8 BIT DMA OUTPUT    ³ 0x14 ³ DMA channel 1 emulated also on ports 2 & 3  ³
+³ ³ 2 BIT DMA OUTPUT    ³ 0x16 ³Â A lot of useless in most cases functions;  ³
+³ ³ 2 BIT DMA REFERENCE ³ 0x17 ³³ if somebody needs them for something really³
+³ ³ 2.6 BIT DMA OUTPUT  ³ 0x76 ³³ important please mail me; besides that you ³
+³ ³ 2.6 BIT DMA REF.    ³ 0x77 ³³ must know how these functions works; I mean³
+³ ³ 4 BIT DMA OUTPUT    ³ 0x74 ³³ the order of bits, compression methods etc.³
+³ ³ 4 BIT DMA REFERENCE ³ 0x75 ³Ù                                            ³
+³û³ HALT DMA            ³ 0xD0 ³                                             ³
+³û³ CONTINUE DMA        ³ 0xD4 ³                                             ³
+³û³ SET TIME CONSTANT   ³ 0x40 ³                                             ³
+³ ³ MULTI-CHANNEL DAC   ³ 0x6? ³ ??? Tell me somebody what it does?          ³
+³û³ TURN ON SPEAKER     ³ 0xD1 ³                                             ³
+³û³ TURN OFF SPEAKER    ³ 0xD3 ³                                             ³
+³û³ CARD IDENTIFICATION ³ 0xE0 ³                                             ³
+³û³ GET DSP VERSION NUM ³ 0xE1 ³ Returns version 1.10 of DSP                 ³
+³û³ ??? ENCODE DATA ??? ³ 0xE2 ³ See notice below                            ³
+ÀÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+   The emulator hooks any INs/OUTs into ports 220h - 22Eh and returns
+   appropiate values; register 4 of port 228h (internal timers control)
+   also is emulated because many detection schemes uses it; other register
+   numbers are ignored. Also program hooks ports 0..C (DMA) and if the
+   program touches DMA channel 1 it is also emulated. When pseudo-DMA
+   channel 1 counter reaches zero an IRQ is generated.
+
+   The command E2 has been never described either by Creative Labs nor
+   by somebody else, however it is implemented because all programs which
+   uses CT-VOICE.DRV uses this command. It does some kind of encoding,
+   and some data in CT-VOICE is encoded using this function. The formula
+   for this function is:
+   For even bytes:    F = 40 + (X and E9) - (X and 16)
+   and for odd bytes: F = F(-1) + (X xor A5)
+   where F(-1) means previous value of F. It taken me a lot of time
+   to understand these shitty formulas, but now most games must
+   work without problems.
+
+   4. Known bugs
+   ÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ o Real-mode version:
+   The most bugs (?) if any is related to VM86`s supervisor, and while
+   I doesn`t seen a bug that IS definitively a bug. Some games make
+   VSB fail with an message like <<Debug interrupt ...>>, this mean
+   that those programs uses an protected-mode instruction without
+   checking if CPU is already in protected mode. Yes, those programs
+   runs fine under QEMM & EMM386, but these two emulates some PM
+   instructions. VSB version 1.03++ also emulates instructions
+   <mov e?x,cr#>, <mov cr#,e?x>, <mov e?x,dr#>, <mov dr#,e?x>.
+   Other PM instructions makes VSB fail (say LIDT, LGDT, LTR, STR).
+
+ o QEMM-aware version:
+   There was first version (2.00) which has LOT of bugs and seems to run
+   fine only on 386DX/4mb RAM/QEMM v7.52 :) However, version 2.01 was
+   somehow fixed and tested on both previous machine and my current
+   486DX4/99 mhz/8mb RAM.
+   If you encounter some problems with this version please mail me.
+
+   5. Possible messages
+   ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ o QEMM-aware part
+   o Incompatible memory manager - QEMM v7.0+ req
+     VSB requires either QEMM version 7.0 and higher or no expanded
+     memory manager at all to run. It WILL NOT support such things like
+     EMM386, ZEMM386, 386MAX etc. Moreover, seems that it NEVER will
+     support them simply because VSB hardly uses QEMM's API.
+   o QEMM is turned off - enable it first
+     QEMM is currently disabled. To enable it type QEMM ON.
+   o Somebody(-thing)is already watching SB ports
+     QEMM does not allow to VSB to intercept some ports that are required
+     to emulate SoundBlaster. Try to turn off stealth, quickboot, other
+     'advanced' features or try configuration given in next section.
+   o A VCPI client already changed PIC mappings
+     A program used VCPI interface to change mappings of IRQs. VSB
+     require IRQ0-7 to start from INT8. This can be simply fixed but
+     I havent seen any program which really does this. If you encounter
+     this message, mail me.
+   o VCPI interface not detected
+     QEMM is loaded but without VCPI server. This can occur in some
+     situations, say, under QEMM+Windows, QEMM NOVCPI etc.
+ o Real-mode part:
+   o This program requires an i386 or higher
+     Guess what it means :)
+   o Processor already running in protected mode
+     Usually you NEVER will encounter this message. If you have, mail me.
+   o Cannot control A20 line
+     You own an incompatible hardware. You cannot do nothing with it.
+
+   6. How to make it work
+   ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+   A number of peoples have reported me lots'n'lots of errors and to avoid
+   further questions I'll make here clear what`s up with VSB:
+
+   First: VSB IS AN EXTREMLY INCOMPATIBLE PROGRAM in the sense that it
+   will not work with a number of system utilites (particulary with many
+   memory managers), DOS shells(e.g. Windows) and NEVER will run in other
+   than MS-DOS operational systems (i.e. OS/2 DOS box). SO IF YOU ENCOUNTER
+   A PROBLEM DONT MAIL ME, TRY FIRST TO BOOT WITH A CONFIGURATION WHICH
+   INCLUDE MINIMAL SET OF NEEDED UTILITES.
+
+   Second: You must clarify if target game NEEDS expanded memory. If it
+   will run well without expanded memory better don't run QEMM at all.
+   Load only HIMEM.SYS - the only memory manager that is completely
+   loyal to VSB.
+
+   Third: VSB WILL NOT RUN if you will load it in UMB. However, version
+   2.00 will not warn you about this and in best case will reboot the
+   system. VSB version 2.01 will fail to launch if you will loadhigh it.
+   This apply only to QEMM version of VSB. Real-mode will normally load
+   in a hardware-based UMB.
+
+   Fourth: If you determined that game really REQUIRES expanded memory
+   (as do it Ultima Underworld, Orion etc.) TRY THE SIMPLEST POSSIBLE
+   CONFIGURATION.
+
+   If you don`t know what the SIMPLEST configuration is try following:
+
+   -------------------------------------------------------------------------
+   CONFIG.SYS: (with QEMM)
+   -------------------------------------------------------------------------
+   rem For DOS version less than 6.0 remove next line
+   Switches   = /f
+   Dos        = High, Umb
+   Buffers    = 20
+   Files      = 20
+   FCBs       = 2,1
+   Stacks     = 0,0
+
+   Device = d:\qemm\qemm386.sys RAM
+   DeviceHigh = c:\dos\mouse.sys
+
+   -------------------------------------------------------------------------
+   CONFIG.SYS: (without QEMM)
+   -------------------------------------------------------------------------
+   rem For DOS version less than 6.0 remove next line
+   Switches   = /f
+   Dos        = High, Umb
+   Buffers    = 20
+   Files      = 20
+   FCBs       = 2,1
+   Stacks     = 0,0
+
+   Device = c:\dos\himem.sys /t:OFF
+   DeviceHigh = c:\dos\mouse.sys
+
+   -------------------------------------------------------------------------
+   AUTOEXEC.BAT:
+   -------------------------------------------------------------------------
+   @echo off
+   path c:\dos;
+   c:\dn\dn.com
+   -------------------------------------------------------------------------
+
+   Some users think that VSB is a 'utility' which simply accomplish a given
+   task. IT IS NOT SO. PLEASE DONT RUN VSB FROM YOUR AUTOEXEC.BAT AND THEN
+   ASK ME WHY IT DOES NOT WORK WHEN YOU RUN WINDOWS! VSB itself is a highly
+   agresive environment and does not like many things which some programs
+   tries to do.
+
+   Troubleshooting
+   ---------------
+
+   1. SoundBlaster driver in Sierra games gives only a few time for
+   SB to respond when detecting, moreover, this interval is shorter on
+   faster machines (theoreticaly is possible that it won`t detect on
+   a P5-90 or P6-133 even a REAL SoundBlaster). So if you get such a
+   problem try to depress 'Turbo' when starting game. After SoundBlaster
+   is detected you can press it back.
+
+   7. History
+   ÍÍÍÍÍÍÍÍÍÍ
+
+   1.00, 14/12/93.
+   ---------------
+   The first version. Tested only on UNREAL & DUNE2.
+
+   1.01, 22/12/93.
+   ---------------
+   Implemented ports 224 & 225 to make Prince 1 to work.
+
+   1.02, 01/01/94.
+   ---------------
+   Implemented the most things that SoundBlaster`s digital
+   part do. Fixed a lot of bugs in supervisor.
+
+   1.03, 27/01/94.
+   ---------------
+   Changed command 14h - now it skips two next command bytes
+   and enables DMA only after this. Implemented command E2. Shit.
+
+   1.05, 20/06/94.
+   ---------------
+   Fixed around five bugs. Changed default IRQ from 7 to 5. Added switch
+   /I# to select desired IRQ.
+
+   2.00, 08/03/95.
+   ---------------
+   Major re-release of subj. Some bugs gone, some added. Time will show.
+   Works with QEMM version 7.0 and higher.
+
+   2.01, 16/05/95
+   ---------------
+   Some minor changes, additions in documentation on how to make VSB work
+   on miscelaneous systems & configurations.
+
+   2.02, 12/09/95
+   ---------------
+   Enhanced QEMM API usage `cause I got a complete dec on QEMM API. Now under
+   QEMM VSB refuses to install only if ports 220-22F have been previously
+   trapped, all other branches has been removed. Found and very old bug
+   (ever since v1.xx) with setting timer speed - not too fatal, but ... ;-)
+
+   8. And last
+   ÍÍÍÍÍÍÍÍÍÍÍ
+
+   The program is completely FREE. This means that if you paid for it,
+   you paid too much. Besides, you could, moreover, you MUST copy it to
+   anybody asked it. The only thing that you COULDNT do with it is to
+   change copyright line anywhere in executable or documentation.
+
+   If you have questions, remarks, bugs report you probably can reach me
+   via FidoNet; my net addresses are:
+
+        2:5030/84.5@FidoNet Andrew Zabolotny (prefered);
+        2:469/37.1@FidoNet Andrew Zabolotny (seldom);
+
+   but now I have BIG problems with the phone line (f$^n noise :) and
+   will seldom read my mail, so don't expect a lighting response.
+
+   P.S. SoundBlaster is a trademark of Creative Labs, Inc;
+        QEMM is a trademark of Quartedeck Office Systems;
+        386 and 486 AREN'T a trademark of Intel Corp. :)
