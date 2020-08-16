@@ -1,28 +1,28 @@
-;°±²ÛßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßÛ²±°
-;°±²Û           Sound Blaster emulator for Covox & PC-Squeaker            Û²±°
-;°±²Û                (C)opyright 1993 by FRIENDS software                 Û²±°
-;°±²Û                           Data segment                              Û²±°
-;°±²ÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ²±°
+;â–‘â–’â–“â–ˆâ–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ           Sound Blaster emulator for Covox & PC-Squeaker            â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ                (C)opyright 1993 by FRIENDS software                 â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ                           Data segment                              â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆâ–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–ˆâ–“â–’â–‘
 
-Header          db      'şÄ[ VSB ]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[ Installed ]Äş',0Dh,0Ah
-                db      '³ Virtual SoundBlaster (SB emulator) for DAC ³',0Dh,0Ah
-                db      '³ (C)opyright 1993..1995 by FRIENDS software ³',0Dh,0Ah
-                db      '³ Version 2.02               VSB /? for help ³',0Dh,0Ah
-                db      'şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş',0Dh,0Ah,'$'
-BadOption       db      'şÄ[ VSB ]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[ Error ]Äş',0Dh,0Ah
-                db      '³  Invalid option - see below legal options  ³',0Dh,0Ah
-                db      'şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş',0Dh,0Ah
-HelpText        db      'şÄ[ VSB ]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[ Help ]Äş',0Dh,0Ah
-                db      '³ Virtual SoundBlaster for DAC  Version 2.02 ³',0Dh,0Ah
-                db      '³      Compiled on ',??date,' at ',??time,'      ³',0Dh,0Ah
-                db      '³ Syntax : VSB {/SLWAI};  Available options: ³',0Dh,0Ah
-                db      '³ /S   - Use PC speaker for output           ³',0Dh,0Ah
-                db      '³ /L#  - Use Covox in LPT# (1-4) for output  ³',0Dh,0Ah
-                db      '³ /W   - Slower ports 388h & 389h (for fast  ³',0Dh,0Ah
-                db      '³        machines with real AdLib)           ³',0Dh,0Ah
-                db      '³ /A   - Don`t intercept ports 388h & 389h   ³',0Dh,0Ah
-                db      '³        (if you have an real AdLib card)    ³',0Dh,0Ah
-                db      '³ /I#  - Set SoundBlaster IRQ number (5 or 7)³',0Dh,0Ah
-                db      '³        Default is IRQ5 (factory setting :) ³',0Dh,0Ah
-                db      '³ Default output device is SeleN sound card. ³',0Dh,0Ah
-                db      'şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş',0Dh,0Ah,'$'
+Header          db      'â– â”€[ VSB ]â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€[ Installed ]â”€â– ',0Dh,0Ah
+                db      'â”‚ Virtual SoundBlaster (SB emulator) for DAC â”‚',0Dh,0Ah
+                db      'â”‚ (C)opyright 1993..1995 by FRIENDS software â”‚',0Dh,0Ah
+                db      'â”‚ Version 2.02               VSB /? for help â”‚',0Dh,0Ah
+                db      'â– â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â– ',0Dh,0Ah,'$'
+BadOption       db      'â– â”€[ VSB ]â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€[ Error ]â”€â– ',0Dh,0Ah
+                db      'â”‚  Invalid option - see below legal options  â”‚',0Dh,0Ah
+                db      'â– â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â– ',0Dh,0Ah
+HelpText        db      'â– â”€[ VSB ]â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€[ Help ]â”€â– ',0Dh,0Ah
+                db      'â”‚ Virtual SoundBlaster for DAC  Version 2.02 â”‚',0Dh,0Ah
+                ;db      'â”‚      Compiled on ',??date,' at ',??time,'      â”‚',0Dh,0Ah
+                db      'â”‚ Syntax : VSB {/SLWAI};  Available options: â”‚',0Dh,0Ah
+                db      'â”‚ /S   - Use PC speaker for output           â”‚',0Dh,0Ah
+                db      'â”‚ /L#  - Use Covox in LPT# (1-4) for output  â”‚',0Dh,0Ah
+                db      'â”‚ /W   - Slower ports 388h & 389h (for fast  â”‚',0Dh,0Ah
+                db      'â”‚        machines with real AdLib)           â”‚',0Dh,0Ah
+                db      'â”‚ /A   - Don`t intercept ports 388h & 389h   â”‚',0Dh,0Ah
+                db      'â”‚        (if you have an real AdLib card)    â”‚',0Dh,0Ah
+                db      'â”‚ /I#  - Set SoundBlaster IRQ number (5 or 7)â”‚',0Dh,0Ah
+                db      'â”‚        Default is IRQ5 (factory setting :) â”‚',0Dh,0Ah
+                db      'â”‚ Default output device is SeleN sound card. â”‚',0Dh,0Ah
+                db      'â– â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â– ',0Dh,0Ah,'$'

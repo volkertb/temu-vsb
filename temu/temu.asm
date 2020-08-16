@@ -1,8 +1,8 @@
-;ฺอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออฟ
-;ณฑฒÛ  TANDY3 & PCjr sound generator (TI SN 76496N) & DISNEY SS emulator  Ûฒฑณ
-;ณฑฒÛ             for Covox Speech Thing|PC Squeaker & 386 CPU            Ûฒฑณ
-;ณฑฒÛ          Version 3.03 (C)opyright 1993 by FRIENDS software          Ûฒฑณ
-;ภอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออู
+;โ”โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ”
+;โ”โ–’โ–“โ–  TANDY3 & PCjr sound generator (TI SN 76496N) & DISNEY SS emulator  โ–โ–“โ–’โ”
+;โ”โ–’โ–“โ–             for Covox Speech Thing|PC Squeaker & 386 CPU            โ–โ–“โ–’โ”
+;โ”โ–’โ–“โ–          Version 3.03 (C)opyright 1993 by FRIENDS software          โ–โ–“โ–’โ”
+;โ””โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ”
 
                 .SALL
                 .MODEL  TINY
@@ -18,13 +18,13 @@ StartFreq       equ     050h
 
 Start:          jmp     Init
 
-ScaleTable      db      16*256 dup ('๚')
+ScaleTable      db      16*256 dup ('ยท')
 
-                include ..\386pdef.asm          ; Definitions first
-                include ..\386pdata.asm         ; Then data segment
-                include ..\386plib.asm          ; PM library
-                include ..\386pint.asm          ; ISR's
-                include ..\386pdt.asm           ; Descriptor tables
+                include ../386pdef.asm          ; Definitions first
+                include ../386pdata.asm         ; Then data segment
+                include ../386plib.asm          ; PM library
+                include ../386pint.asm          ; ISR's
+                include ../386pdt.asm           ; Descriptor tables
 
 IRQ0handler     proc    near
                 push    ax
@@ -479,7 +479,7 @@ SetupRoutines   proc    near
                 inc     dx
                 shl     dx,1
                 mov     MinFreq,dx
-;ฐฑฒÛ Compute volume scaling table Ûฒฑฐ
+;โ–‘โ–’โ–“โ– Compute volume scaling table โ–โ–“โ–’โ–‘
                 mov     bx,offset VolumeTable
                 push    cs
                 pop     es
@@ -512,8 +512,8 @@ Init:           call    CheckCPU
                 mov     dx,offset LastByte
                 int     27h                     ; Stay resident
 
-                include ..\386rdata.asm         ; Real-mode data
-                include ..\386preal.asm         ; Then real-mode subroutines
+                include ../386rdata.asm         ; Real-mode data
+                include ../386preal.asm         ; Then real-mode subroutines
                 include t386data.asm
 
                 end     Start

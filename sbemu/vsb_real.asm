@@ -1,8 +1,8 @@
-;ฺอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออฟ
-;ณฑฒÛ            Sound Blaster emulator for Covox & PC-Squeaker           Ûฒฑณ
-;ณฑฒÛ             for Covox Speech Thing|PC Squeaker & 386 CPU            Ûฒฑณ
-;ณฑฒÛ          Version 2.02 (C)opyright 1993 by FRIENDS software          Ûฒฑณ
-;ภอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออู
+;โ”โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ”
+;โ”โ–’โ–“โ–            Sound Blaster emulator for Covox & PC-Squeaker           โ–โ–“โ–’โ”
+;โ”โ–’โ–“โ–             for Covox Speech Thing|PC Squeaker & 386 CPU            โ–โ–“โ–’โ”
+;โ”โ–’โ–“โ–          Version 2.02 (C)opyright 1993 by FRIENDS software          โ–โ–“โ–’โ”
+;โ””โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ”
 
                 .SALL
                 .MODEL  TINY
@@ -17,11 +17,11 @@ MinTimerFreq    equ     030h            ; Ignore request to faster frequences
 
 Start:          jmp     Init
 
-                include ..\386pdef.asm  ; Definitions first
-                include ..\386pdata.asm ; Then data segment
-                include ..\386plib.asm  ; PM library
-                include ..\386pint.asm  ; ISR's
-                include ..\386pdt.asm   ; Descriptor tables
+                include ../386pdef.asm  ; Definitions first
+                include ../386pdata.asm ; Then data segment
+                include ../386plib.asm  ; PM library
+                include ../386pint.asm  ; ISR's
+                include ../386pdt.asm   ; Descriptor tables
 
 IRQ0handler     proc    near
                 push    ax
@@ -126,12 +126,12 @@ EnableDMA       proc    near
                 or      al,al
                 je      @@Off
                 cmp     ss:SBcounter,0FFFFh
-                jne     @@1
+                jne     LocalOne
                 inc     ss:SBcounter
-@@1:            cmp     ss:DMAcounter,0FFFFh
-                jne     @@2
+LocalOne:            cmp     ss:DMAcounter,0FFFFh
+                jne     LocalTwo
                 inc     ss:DMAcounter
-@@2:            mov     bx,word ptr ss:PatchData2
+LocalTwo:            mov     bx,word ptr ss:PatchData2
 @@Off:          mov     word ptr ss:EnablePatch,bx
                 pop     bx
                 ret
@@ -381,8 +381,8 @@ Init:           call    CheckCmdLine
                 mov     dx,offset LastByte
                 int     27h                     ; Stay resident
 
-                include ..\386rdata.asm         ; Real-mode data
-                include ..\386preal.asm         ; Then real-mode subroutines
+                include ../386rdata.asm         ; Real-mode data
+                include ../386preal.asm         ; Then real-mode subroutines
                 include s386data.asm
 
                 end     Start

@@ -1,8 +1,8 @@
-;�������������������������������������������������������������������������۲��
-;����                 A i386(R) protected mode library                    ۲��
-;����               (C)opyright 1993 by FRIENDS software                  ۲��
-;����                     Real-mode use routines                          ۲��
-;�������������������������������������������������������������������������۲��
+;░▒▓█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▓▒░
+;░▒▓█                 A i386(R) protected mode library                    █▓▒░
+;░▒▓█               (C)opyright 1993 by FRIENDS software                  █▓▒░
+;░▒▓█                     Real-mode use routines                          █▓▒░
+;░▒▓█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█▓▒░
 
 ;*****************************************************************************
 ; Routine to control A20 line; AL=1 to turn A20 on (enable) or 0 to disable.

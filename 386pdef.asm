@@ -1,8 +1,8 @@
-;�������������������������������������������������������������������������۲��
-;����                 A i386(R) protected mode library                    ۲��
-;����               (C)opyright 1993 by FRIENDS software                  ۲��
-;����                     Equates and definitions                         ۲��
-;�������������������������������������������������������������������������۲��
+;░▒▓█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▓▒░
+;░▒▓█                 A i386(R) protected mode library                    █▓▒░
+;░▒▓█               (C)opyright 1993 by FRIENDS software                  █▓▒░
+;░▒▓█                     Equates and definitions                         █▓▒░
+;░▒▓█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█▓▒░
 
                 locals  @@
 

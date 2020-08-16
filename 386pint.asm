@@ -1,8 +1,8 @@
-;°±²ÛßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßÛ²±°
-;°±²Û		      A i386(R) protected mode library			  Û²±°
-;°±²Û		    (C)opyright 1993 by FRIENDS software		  Û²±°
-;°±²Û			     Interrupt handlers 			  Û²±°
-;°±²ÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ²±°
+;â–‘â–’â–“â–ˆâ–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ		      A i386(R) protected mode library			  â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ		    (C)opyright 1993 by FRIENDS software		  â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ			     Interrupt handlers 			  â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆâ–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–ˆâ–“â–’â–‘
 
 ; Note - We don't emulate lock, IRETD, PUSHFD, POPFD yet
 
@@ -165,7 +165,7 @@ IntAbt: 	call	CRLF
 		call	HexOut4
 		mov	al,' '
 		call	OutChar
-		mov	al,'³'
+		mov	al,'â”‚'
 		call	OutChar
 		mov	al,' '
 		call	OutChar
@@ -179,7 +179,7 @@ IntAbt: 	call	CRLF
 		jne	@@D_1
 		mov	dl,16
 		sub	esi,16
-		mov	al,'³'
+		mov	al,'â”‚'
 		call	OutChar
 		mov	al,' '
 		call	OutChar
@@ -427,7 +427,7 @@ EndIf
 		pop	eax
 		iretd
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ>
+;â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€>
 If PMinterrupts eq 1
 
 ReturnToPL0:	mov	ax,@gdData
@@ -444,7 +444,7 @@ ReturnToPL0:	mov	ax,@gdData
 		pop	eax
 		mov	esp,ss:Temp1
 		iretd				;Return to PL0
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ>
+;â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€>
 EndIf
 
 EndIf						;If StartIOPL<>0
@@ -542,7 +542,7 @@ DoHalt: 	cbw
 ; interrupts. Call with es:bx pointing to a I30parmBlock structure.
 
 Int30h:
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ>
+;â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€>
 If PMinterrupts eq 1
 		break
 		push	es:[bx].i30gs		;Build a fake stack frame
@@ -587,7 +587,7 @@ If PMinterrupts eq 1
 		pop	ebp			;registers
 		mov	ebx,es:[bx].i30ebx
 		iretd				;Thrash forever!!!
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ>
+;â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€>
 EndIf
 
 ;*****************************************************************************

@@ -1,8 +1,8 @@
-;�������������������������������������������������������������������������۲��
-;����                 A i386(R) protected mode library                    ۲��
-;����               (C)opyright 1993 by FRIENDS software                  ۲��
-;����                   Descriptor tables (GDT & IDT)                     ۲��
-;�������������������������������������������������������������������������۲��
+;░▒▓█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▓▒░
+;░▒▓█                 A i386(R) protected mode library                    █▓▒░
+;░▒▓█               (C)opyright 1993 by FRIENDS software                  █▓▒░
+;░▒▓█                   Descriptor tables (GDT & IDT)                     █▓▒░
+;░▒▓█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█▓▒░
 
 ;********************* Global Descriptor Table (GDT) *************************
 ; NULL descriptor

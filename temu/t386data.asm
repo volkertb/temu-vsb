@@ -1,22 +1,22 @@
-;°±²ÛßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßÛ²±°
-;°±²Û         Disney Sound Source emulator for Covox & PC-Squeaker        Û²±°
-;°±²Û                (C)opyright 1993 by FRIENDS software                 Û²±°
-;°±²Û                           Data segment                              Û²±°
-;°±²ÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ²±°
+;â–‘â–’â–“â–ˆâ–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ         Disney Sound Source emulator for Covox & PC-Squeaker        â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ                (C)opyright 1993 by FRIENDS software                 â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ                           Data segment                              â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆâ–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–ˆâ–“â–’â–‘
 
-Header          db      'şÄ[ TEMU ]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[ Installed ]Äş',0Dh,0Ah
-                db      '³ Tandy 3-voice & DSS emulator for Covox&386 ³',0Dh,0Ah
-                db      '³ (C)opyright >',??date,'< by FRIENDS software ³',0Dh,0Ah
-                db      '³ Version 3.03              TEMU /? for help ³',0Dh,0Ah
-                db      'şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş',0Dh,0Ah,'$'
-BadOption       db      'şÄ[ TEMU ]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[ Error ]Äş',0Dh,0Ah
-                db      '³  Invalid option - see below legal options  ³',0Dh,0Ah
-                db      'şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş',0Dh,0Ah
-HelpText        db      'şÄ[ TEMU ]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[ Help ]Äş',0Dh,0Ah
-                db      '³ Tandy 3-voice & DSS emulator for Covox&386 ³',0Dh,0Ah
-                db      '³ Syntax : TEMU {/SLT};   Available options: ³',0Dh,0Ah
-                db      '³ /S   - Use PC speaker for output           ³',0Dh,0Ah
-                db      '³ /L#  - Use Covox in LPT# (1-4) for output  ³',0Dh,0Ah
-                db      '³ /T## - Set IRQ0 frequence in kHz (12-44)   ³',0Dh,0Ah
-                db      '³ Default output device is SeleN sound card. ³',0Dh,0Ah
-                db      'şÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄş',0Dh,0Ah,'$'
+Header          db      'â– â”€[ TEMU ]â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€[ Installed ]â”€â– ',0Dh,0Ah
+                db      'â”‚ Tandy 3-voice & DSS emulator for Covox&386 â”‚',0Dh,0Ah
+                db      'â”‚ (C)opyright >',??date,'< by FRIENDS software â”‚',0Dh,0Ah
+                db      'â”‚ Version 3.03              TEMU /? for help â”‚',0Dh,0Ah
+                db      'â– â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â– ',0Dh,0Ah,'$'
+BadOption       db      'â– â”€[ TEMU ]â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€[ Error ]â”€â– ',0Dh,0Ah
+                db      'â”‚  Invalid option - see below legal options  â”‚',0Dh,0Ah
+                db      'â– â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â– ',0Dh,0Ah
+HelpText        db      'â– â”€[ TEMU ]â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€[ Help ]â”€â– ',0Dh,0Ah
+                db      'â”‚ Tandy 3-voice & DSS emulator for Covox&386 â”‚',0Dh,0Ah
+                db      'â”‚ Syntax : TEMU {/SLT};   Available options: â”‚',0Dh,0Ah
+                db      'â”‚ /S   - Use PC speaker for output           â”‚',0Dh,0Ah
+                db      'â”‚ /L#  - Use Covox in LPT# (1-4) for output  â”‚',0Dh,0Ah
+                db      'â”‚ /T## - Set IRQ0 frequence in kHz (12-44)   â”‚',0Dh,0Ah
+                db      'â”‚ Default output device is SeleN sound card. â”‚',0Dh,0Ah
+                db      'â– â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â– ',0Dh,0Ah,'$'

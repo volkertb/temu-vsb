@@ -1,8 +1,8 @@
-;°±²ÛßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßÛ²±°
-;°±²Û           Sound Blaster emulator for Covox & PC-Squeaker            Û²±°
-;°±²Û                (C)opyleft 1993 by FRIENDS software                  Û²±°
-;°±²Û                          Port handler                               Û²±°
-;°±²ÛÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÛ²±°
+;â–‘â–’â–“â–ˆâ–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ           Sound Blaster emulator for Covox & PC-Squeaker            â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ                (C)opyleft 1993 by FRIENDS software                  â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆ                          Port handler                               â–ˆâ–“â–’â–‘
+;â–‘â–’â–“â–ˆâ–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–ˆâ–“â–’â–‘
 
                 cmp     ah,0EEh
                 je      OutDX_AL
@@ -174,73 +174,73 @@ Out229          label   near                    ; Ignore RegNo; only data
                 mov     ah,0
 Command228      equ     byte ptr $-1
                 cmp     ah,4
-                jne     @@229_Done
+                jne     LocalTwo29_Done
                 test    al,10000000b
-                jne     @@229_Reset
+                jne     LocalTwo29_Reset
                 test    al,1
-                jne     @@229_Set
-@@229_Reset:    mov     ss:Port228,0
+                jne     LocalTwo29_Set
+LocalTwo29_Reset:    mov     ss:Port228,0
                 jmp     AllRight
-@@229_Set:      and     al,060h
+LocalTwo29_Set:      and     al,060h
                 xor     al,0E0h
                 mov     ss:Port228,al
-@@229_Done:     jmp     AllRight
+LocalTwo29_Done:     jmp     AllRight
 
 Out22Ca         label   near
                 cmp     al,010h
-                je      @@22C_10
+                je      LocalTwo2C_10
                 mov     ss:Command,al
                 cmp     al,014h
-                je      @@22C_14
+                je      LocalTwo2C_14
                 cmp     al,040h
-                je      @@22Ca_OK
+                je      LocalTwo2Ca_OK
                 cmp     al,0E0h
-                je      @@22Ca_OK
+                je      LocalTwo2Ca_OK
                 cmp     al,0D0h
-                je      @@22C_D0
+                je      LocalTwo2C_D0
                 cmp     al,0D1h
-                je      @@22C_D1
+                je      LocalTwo2C_D1
                 cmp     al,0D3h
-                je      @@22C_D3
+                je      LocalTwo2C_D3
                 cmp     al,0D4h
-                je      @@22C_D4
+                je      LocalTwo2C_D4
                 cmp     al,0E1h
-                je      @@22C_E1
+                je      LocalTwo2C_E1
                 cmp     al,0E2h
-                je      @@22C_E2
+                je      LocalTwo2C_E2
                 cmp     al,0F2h
-                je      @@22C_F2
-                jmp     @@22Cb_OK
+                je      LocalTwo2C_F2
+                jmp     LocalTwo2Cb_OK
 
-@@22C_10:       mov     ss:Out22Coffs,offset @@22C_10a
+LocalTwo2C_10:       mov     ss:Out22Coffs,offset LocalTwo2C_10a
                 jmp     AllRight
 
-@@22C_14:       mov     ss:Out22Coffs,offset @@22C_14a
+LocalTwo2C_14:       mov     ss:Out22Coffs,offset LocalTwo2C_14a
                 jmp     AllRight
 
-@@22C_D0:       mov     al,0
+LocalTwo2C_D0:       mov     al,0
                 call    EnableDMA
                 jmp     AllRight
 
-@@22C_D1:       mov     al,1
+LocalTwo2C_D1:       mov     al,1
                 call    EnableSB
                 jmp     AllRight
 
-@@22C_D3:       mov     al,0
+LocalTwo2C_D3:       mov     al,0
                 call    EnableSB
                 jmp     AllRight
 
-@@22C_D4:       mov     al,1
+LocalTwo2C_D4:       mov     al,1
                 call    EnableDMA
                 jmp     AllRight
 
-@@22C_E1:       mov     ss:In22Aoffs,offset In22A_E1a
+LocalTwo2C_E1:       mov     ss:In22Aoffs,offset In22A_E1a
                 jmp     @@CommandOK
 
-@@22C_E2:       mov     ss:Out22Coffs,offset @@22C_E2a
+LocalTwo2C_E2:       mov     ss:Out22Coffs,offset LocalTwo2C_E2a
                 jmp     AllRight
 
-@@22C_F2:       pop     dx
+LocalTwo2C_F2:       pop     dx
                 pop     ebp
                 pop     ds
                 pop     ebx
@@ -252,30 +252,30 @@ IRQpatch2       equ     word ptr $-2
 IRQpatch4       equ     byte ptr $-2
                 jmp     IRQset
 
-@@22Ca_OK:      mov     ss:Out22Coffs,offset Out22Cb
+LocalTwo2Ca_OK:      mov     ss:Out22Coffs,offset Out22Cb
                 jmp     AllRight
 
-@@22Cb_OK:      mov     ss:Out22Coffs,offset Out22Ca
+LocalTwo2Cb_OK:      mov     ss:Out22Coffs,offset Out22Ca
                 jmp     AllRight
 
 Out22Cb         label   near
                 mov     ah,0
 Command         equ     byte ptr $-1
                 cmp     ah,040h
-                je      @@22C_40
+                je      LocalTwo2C_40
                 cmp     ah,0E0h
-                je      @@22C_E0
+                je      LocalTwo2C_E0
                 jmp     @@CommandOK
-@@22C_10a:      mov     dx,ss:DACport
+LocalTwo2C_10a:      mov     dx,ss:DACport
                 out     dx,al
 @@CommandOK:    mov     ss:Out22Coffs,offset Out22Ca
                 jmp     AllRight
 
-@@22C_14a:      mov     byte ptr ss:SBDMAcount,al
-                mov     ss:Out22Coffs,offset @@22C_14b
+LocalTwo2C_14a:      mov     byte ptr ss:SBDMAcount,al
+                mov     ss:Out22Coffs,offset LocalTwo2C_14b
                 jmp     AllRight
 
-@@22C_14b:      mov     byte ptr ss:SBDMAcount+1,al
+LocalTwo2C_14b:      mov     byte ptr ss:SBDMAcount+1,al
                 mov     ss:Out22Coffs,offset Out22Ca
                 mov     ax,word ptr ss:PatchData1
                 mov     word ptr ss:EnablePatch,ax; Disable DMA
@@ -289,23 +289,23 @@ Command         equ     byte ptr $-1
                 call    EnableDMA
                 jmp     AllRight
 
-@@22C_40:       not     al
+LocalTwo2C_40:       not     al
                 mov     ah,120
                 mul     ah
                 xor     dx,dx
                 mov     bx,108
                 div     bx
                 cmp     ax,MinIRQfreq
-                ja      @@22C_40_1
+                ja      LocalTwo2C_40_1
                 mov     ax,MinIRQfreq
-@@22C_40_1:     call    SetTimerFreq
+LocalTwo2C_40_1:     call    SetTimerFreq
                 jmp     @@CommandOK
 
-@@22C_E0:       not     al
+LocalTwo2C_E0:       not     al
                 mov     ss:port22Acontents,al
                 jmp     @@CommandOK
 
-@@22C_E2a:      xor     ss:Phase_E2,1
+LocalTwo2C_E2a:      xor     ss:Phase_E2,1
                 je      @@Phase2
                 mov     ah,al
                 and     ax,016E9h

@@ -1,0 +1,5 @@
+*.asm text working-tree-encoding=IBM437
+*.doc text working-tree-encoding=IBM437
+*.hdr text working-tree-encoding=IBM437
+*.rus text working-tree-encoding=IBM866
+

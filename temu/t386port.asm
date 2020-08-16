@@ -1,8 +1,8 @@
-;�������������������������������������������������������������������������۲��
-;����         Disney Sound Source emulator for Covox & PC-Squeaker        ۲��
-;����                (C)opyleft 1993 by FRIENDS software                  ۲��
-;����                          Port handler                               ۲��
-;�������������������������������������������������������������������������۲��
+;░▒▓█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█▓▒░
+;░▒▓█         Disney Sound Source emulator for Covox & PC-Squeaker        █▓▒░
+;░▒▓█                (C)opyleft 1993 by FRIENDS software                  █▓▒░
+;░▒▓█                          Port handler                               █▓▒░
+;░▒▓█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█▓▒░
 
 
 PortHandler     proc    near

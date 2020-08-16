@@ -1,14 +1,14 @@
-;ฺอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออฟ
-;ณฑฒÛ            Sound Blaster emulator for Covox & PC-Squeaker           Ûฒฑณ
-;ณฑฒÛ             for Covox Speech Thing|PC Squeaker & 386 CPU            Ûฒฑณ
-;ณฑฒÛ          Version 2.02 (C)opyright 1993 by FRIENDS software          Ûฒฑณ
-;ภอออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออู
+;โ”โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ”
+;โ”โ–’โ–“โ–            Sound Blaster emulator for Covox & PC-Squeaker           โ–โ–“โ–’โ”
+;โ”โ–’โ–“โ–             for Covox Speech Thing|PC Squeaker & 386 CPU            โ–โ–“โ–’โ”
+;โ”โ–’โ–“โ–          Version 2.02 (C)opyright 1993 by FRIENDS software          โ–โ–“โ–’โ”
+;โ””โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ•โ”
 
                 .SALL
                 .MODEL  TINY
                 .386P
                 .CODE
-                SMART
+                ;SMART
                 ORG     100h
 
 Start:          jmp     @@here
@@ -32,7 +32,8 @@ Start:          jmp     @@here
                 add     ax,[si+2]
                 cmp     ax,di
                 jae     @@noMemory
-                lea     ax,[di+offset @@nextInstr - offset Start]
+                theoffset equ offset @@nextInstr - offset Start
+                lea     ax,[di+theoffset]
                 mov     si,offset Start
                 rep     movsb
                 jmp     ax

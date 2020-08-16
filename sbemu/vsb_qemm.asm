@@ -1,8 +1,8 @@
-;���������������������������������������������������������������������������Ϳ
-;����            Sound Blaster emulator for Covox & PC-Squeaker           ۲��
-;����   for Covox Speech Thing|PC Squeaker & 386 CPU using QEMM API       ۲��
-;����          Version 2.02 (C)opyright 1993 by FRIENDS software          ۲��
-;�����������������������������������������������������������������������������
+;┌═══════════════════════════════════════════════════════════════════════════┐
+;│▒▓█            Sound Blaster emulator for Covox & PC-Squeaker           █▓▒│
+;│▒▓█   for Covox Speech Thing|PC Squeaker & 386 CPU using QEMM API       █▓▒│
+;│▒▓█          Version 2.02 (C)opyright 1993 by FRIENDS software          █▓▒│
+;└═══════════════════════════════════════════════════════════════════════════┘
 
                 .SALL
                 .MODEL  TINY
@@ -1293,24 +1293,24 @@ CaughtPorts     dw      02h,03h
 nCaughtPorts    equ     ($ - offset CaughtPorts) / 2
 nPorts          dw      nCaughtPorts
 
-msgNoQEMM       db      '��[ VSB ]��������������������������[ Error ]��',0Dh,0Ah
-                db      '�Incompatible memory manager - QEMM v7.0+ req�',0Dh,0Ah
-                db      '����������������������������������������������',0Dh,0Ah,'$'
-msgQEMMoff      db      '��[ VSB ]��������������������������[ Error ]��',0Dh,0Ah
-                db      '�    QEMM is turned off - enable it first    �',0Dh,0Ah
-                db      '����������������������������������������������',0Dh,0Ah,'$'
-msgPortBusy     db      '��[ VSB ]��������������������������[ Error ]��',0Dh,0Ah
-                db      '� VSB is already loaded - reboot to unload it�',0Dh,0Ah
-                db      '����������������������������������������������',0Dh,0Ah,'$'
-msgPICbusy      db      '��[ VSB ]��������������������������[ Error ]��',0Dh,0Ah
-                db      '� A VCPI client already changed PIC mappings �',0Dh,0Ah
-                db      '����������������������������������������������',0Dh,0Ah,'$'
-msgNoVCPI       db      '��[ VSB ]��������������������������[ Error ]��',0Dh,0Ah
-                db      '�         VCPI interface not detected        �',0Dh,0Ah
-                db      '����������������������������������������������',0Dh,0Ah,'$'
-msgMapped       db      '��[ VSB ]��������������������������[ Error ]��',0Dh,0Ah
-                db      '�Cannot load VSB into mapped memory (i.e.UMB)�',0Dh,0Ah
-                db      '����������������������������������������������',0Dh,0Ah,'$'
+msgNoQEMM       db      '■─[ VSB ]──────────────────────────[ Error ]─■',0Dh,0Ah
+                db      '│Incompatible memory manager - QEMM v7.0+ req│',0Dh,0Ah
+                db      '■────────────────────────────────────────────■',0Dh,0Ah,'$'
+msgQEMMoff      db      '■─[ VSB ]──────────────────────────[ Error ]─■',0Dh,0Ah
+                db      '│    QEMM is turned off - enable it first    │',0Dh,0Ah
+                db      '■────────────────────────────────────────────■',0Dh,0Ah,'$'
+msgPortBusy     db      '■─[ VSB ]──────────────────────────[ Error ]─■',0Dh,0Ah
+                db      '│ VSB is already loaded - reboot to unload it│',0Dh,0Ah
+                db      '■────────────────────────────────────────────■',0Dh,0Ah,'$'
+msgPICbusy      db      '■─[ VSB ]──────────────────────────[ Error ]─■',0Dh,0Ah
+                db      '│ A VCPI client already changed PIC mappings │',0Dh,0Ah
+                db      '■────────────────────────────────────────────■',0Dh,0Ah,'$'
+msgNoVCPI       db      '■─[ VSB ]──────────────────────────[ Error ]─■',0Dh,0Ah
+                db      '│         VCPI interface not detected        │',0Dh,0Ah
+                db      '■────────────────────────────────────────────■',0Dh,0Ah,'$'
+msgMapped       db      '■─[ VSB ]──────────────────────────[ Error ]─■',0Dh,0Ah
+                db      '│Cannot load VSB into mapped memory (i.e.UMB)│',0Dh,0Ah
+                db      '■────────────────────────────────────────────■',0Dh,0Ah,'$'
 
 Zcode16         ends
 
