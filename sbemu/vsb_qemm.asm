@@ -7,8 +7,8 @@
                 .SALL
                 .MODEL  TINY
                 .386P
-                LOCALS  @@
-                SMART
+;                LOCALS  @@
+;                SMART
 
 MinTimerFreq    equ     030h            ; Ignore request to faster frequences
 
@@ -41,7 +41,7 @@ Flash           macro   Color           ; debug macro
 
 Acode16         segment byte use16
                 assume  cs:Acode16, ds:Acode16
-                group   _Code Acode16,Code32,Zcode16
+_Code           group   Acode16,Code32,Zcode16
                 org     100h
 
 MinIRQfreq      equ     20h
@@ -133,10 +133,10 @@ DeltaPhysical1  equ     dword ptr $-4
                 je      @@Off
                 cmp     SBcounter[ebx],0FFFFh
                 jne     @@ldb1
-                inc     SBcounter[ebx]
+                inc     word ptr SBcounter[ebx]
 @@ldb1:         cmp     DMAcounter[ebx],0FFFFh
                 jne     @@ldb2
-                inc     DMAcounter[ebx]
+                inc     word ptr DMAcounter[ebx]
 @@ldb2:         mov     ax,word ptr PatchData2[ebx]
 @@Off:          mov     word ptr EnablePatch[ebx],ax
                 retn
@@ -170,7 +170,7 @@ IRQ0entry       endp
 
 Code32          ends
 
-Zcode16         segment byte use16
+Zcode16         segment dword use16
                 assume  cs:Zcode16, ds:Acode16
 
 SettleBus       macro
@@ -226,18 +226,18 @@ EnableDMA       proc    near
                 push    bx
                 mov     bx,word ptr PatchData1
                 or      al,al
-                je      @@Off
+                je      @@DMAOff
                 cmp     SBcounter,0FFFFh
-                jne     @@1
+                jne     @@DMASub1
                 inc     SBcounter
-@@1:            cmp     DMAcounter,0FFFFh
-                jne     @@2
+@@DMASub1:      cmp     DMAcounter,0FFFFh
+                jne     @@DMASub2
                 inc     DMAcounter
-@@2:            mov     bx,word ptr PatchData2
-@@Off:          mov     word ptr EnablePatch,bx
+@@DMASub2:      mov     bx,word ptr PatchData2
+@@DMAOff:       mov     word ptr EnablePatch,bx
                 pop     bx
                 ret
-                endp
+EnableDMA       endp
 
 ; 1 - Enable sound; 0 - disable sound
 EnableSB        proc    near
@@ -254,7 +254,7 @@ EnableSB        proc    near
                 pop     bx
                 pop     eax
                 ret
-                endp
+EnableSB        endp
 
 ; NOTE: DESTROYS DX!
 SetTimerFreq    proc    near
@@ -292,7 +292,7 @@ SetTimerFreq    proc    near
                 mov     IRQ0freq,bx
                 mov     TimerFreq,bx
                 jmp     @@PutRes
-                endp
+SetTimerFreq    endp
 
 QEMMcallback    proc    far
                 push    ds
@@ -959,7 +959,7 @@ CheckCmdLine    proc    near
 @@Speaker:      inc     Speaker
                 jmp     @@NextChar
 
-@@Adlib:        mov     nPorts,nCaughtPorts - 2
+@@Adlib:        sub     nPorts,2 ; was `mov nPorts,nCaughtPorts - 2`, but WASM doesn't support forward EQU references
                 jmp     @@NextChar
 
 @@SlowAdlib:    mov     SlowAdlib,1
@@ -992,7 +992,7 @@ CheckCmdLine    proc    near
                 jmp     @@NextChar
 
 @@EndCmdLine:   retn
-                endp
+CheckCmdLine    endp
 
 SetupRoutines   proc    near
                 mov     CodeSegment,cs
@@ -1088,7 +1088,7 @@ SetupRoutines   proc    near
 @@portBusy:     mov     dx,offset msgPortBusy
                 jmp     PrintAndExit
 
-                endp
+SetupRoutines   endp
 
 SetupInts       proc    near
                 mov     ax,0DE00h
@@ -1276,7 +1276,7 @@ PrintAndExit:   mov     ah,9
 
                 include s386data.asm
 
-                NOWARN  ALN
+;                NOWARN  ALN
                 align 4
 QEMMidt         dq      ?
 QEMMIDTaddr     dd      ?
