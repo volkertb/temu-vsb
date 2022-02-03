@@ -27,13 +27,13 @@ jobs:
         uses: docker://ghcr.io/volkertb/cicd-qemu-dos-docker:main
 
       - name: Get a directory listing
-        run: echo Hello, world!
+        run: ls -lh
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - name: Get a directory listing
-        run: echo Hello, world!
+        run: ls -lh
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
