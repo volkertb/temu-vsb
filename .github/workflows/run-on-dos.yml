@@ -26,11 +26,17 @@ jobs:
       - name: Use cicd-qemu-dos-docker Docker container
         uses: docker://ghcr.io/volkertb/cicd-qemu-dos-docker:main
 
+      - name: Print current working directory
+        run: pwd
+
       - name: Get a directory listing
         run: ls -lh
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - name: Print current working directory
+        run: pwd
 
       - name: Get a directory listing
         run: ls -lh
@@ -44,3 +50,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      - name: Check if qemu is availabe in the Docker instance
+        run: qemu --version
