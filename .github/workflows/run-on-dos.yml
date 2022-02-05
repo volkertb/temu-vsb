@@ -44,6 +44,5 @@ jobs:
           iconv -f CP437 -t UTF-8 cicd_dos.log | grep VSB -
           echo "Checking that log file contains substring TEMU:"
           iconv -f CP437 -t UTF-8 cicd_dos.log | grep TEMU -
-          echo "This assertion should fail the build/workflow:"
-          iconv -f CP437 -t UTF-8 cicd_dos.log | grep SHOULDFAIL -
+
 
