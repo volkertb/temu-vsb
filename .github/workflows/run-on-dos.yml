@@ -22,18 +22,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-        
-      - name: Use cicd-qemu-dos-docker Docker container
-        uses: docker://ghcr.io/volkertb/cicd-qemu-dos-docker:main
-
-      - name: Print current working directory
-        run: pwd
-
-      - name: Get a directory listing
-        run: ls -lh
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - name: Use cicd-qemu-dos-docker Docker container
+        uses: docker://ghcr.io/volkertb/cicd-qemu-dos-docker:main
 
       - name: Print current working directory
         run: pwd
