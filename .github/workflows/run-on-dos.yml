@@ -54,4 +54,5 @@ jobs:
           grep VSB cicd_dos.log
           echo "Checking that log file contains substring TEMU:"
           grep TEMU cicd_dos.log
+          grep SHOULDFAIL cicd_dos.log
 
