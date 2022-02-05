@@ -44,4 +44,14 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      # Verify the CICD DOS batch log file
+      - name: Verify cicd_dos.log
+        run: |
+          echo "Contents of cicd_dos.log:"
+          cat cicd_dos.log
+          echo "Checking that log file contains substring VSB:"
+          grep VSB cicd_dos.log
+          echo "Checking that log file contains substring TEMU:"
+          grep TEMU cicd_dos.log
 
