@@ -34,25 +34,16 @@ jobs:
 
       - name: Get a directory listing
         run: ls -lh
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
           
       # Verify the CICD DOS batch log file
       - name: Verify cicd_dos.log
         run: |
-          echo "Contents of cicd_dos.log:"
-          cat cicd_dos.log
+          echo "Contents of cicd_dos.log (converted from CP437 to UTF-8 encoding):"
+          iconv -f CP437 -t UTF-8 cicd_dos.log
           echo "Checking that log file contains substring VSB:"
-          grep VSB cicd_dos.log
+          iconv -f CP437 -t UTF-8 cicd_dos.log | grep VSB -
           echo "Checking that log file contains substring TEMU:"
-          grep TEMU cicd_dos.log
-          grep SHOULDFAIL cicd_dos.log
+          iconv -f CP437 -t UTF-8 cicd_dos.log | grep TEMU -
+          echo "This assertion should fail the build/workflow:"
+          iconv -f CP437 -t UTF-8 cicd_dos.log | grep SHOULDFAIL -
 
