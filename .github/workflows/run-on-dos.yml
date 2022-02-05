@@ -50,6 +50,4 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          
-      - name: Check if qemu is availabe in the Docker instance
-        run: qemu-system-i386 --version
+
