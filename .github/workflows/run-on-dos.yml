@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Use cicd-qemu-dos-docker Docker container
-        uses: docker://ghcr.io/volkertb/cicd-qemu-dos-docker:main
+        uses: docker://ghcr.io/volkertb/cicd-qemu-dos-docker:v1.1
 
       - name: Print current working directory
         run: pwd
@@ -44,5 +44,3 @@ jobs:
           iconv -f CP437 -t UTF-8 cicd_dos.log | grep VSB -
           echo "Checking that log file contains substring TEMU:"
           iconv -f CP437 -t UTF-8 cicd_dos.log | grep TEMU -
-
-
